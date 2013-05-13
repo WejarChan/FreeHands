@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeHandsConfig targetProject="QCS">
+	
+	<configurationFile location="/Configuration.xml"/>
+	
+<!-- 	<author>Micheal Chan 553806198@qq.com</author> -->
+	
+	<settings>
+		<charset>utf-8</charset>
+<!-- 		<timeout>20000</timeout> -->
+		<useGenerateKeys>true</useGenerateKeys>
+	</settings>
+	
+	<jdbcConnection
+		classPath="/Users/Micheal/Documents/Jar/jdbc_jar/mysql-connector-java-5.1.8-bin.jar"
+		driver="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/QCS?useUnicode=true&amp;characterEncoding=UTF-8"
+		user="root" password="525725">
+	</jdbcConnection>
+
+	<javaModelGenerator targetPacketPrefix="com.qcs" targetPacketSuffix="pojo">
+	</javaModelGenerator>
+	
+	<sqlMapGenerator targetPacketPrefix="com.qcs" targetPacketSuffix="mapper">
+	</sqlMapGenerator>
+	
+	<daoGenerator targetPacketPrefix="com.qcs" targetPacketSuffix="dao">
+	</daoGenerator>
+	
+	<tables schema="QCS" nameRule="">
+		
+		<table tableName="menu" alias="Menu" packetAlias="menu">
+			<properties>
+				<collection name="subMenus">
+					<keys>id</keys>
+					<refTableName>menu</refTableName>
+					<refKeys>parent_id</refKeys>
+			</collection>
+			</properties>
+		</table>
+	
+	
+		<table tableName="user_info" alias="User" packetAlias="user">
+			
+		</table>
+		
+		<table tableName="teacher_info" alias="Teacher" packetAlias="teacher">
+			<properties>
+				<association name="user">
+					<keys>user_id</keys>
+					<refTableName>user_info</refTableName>
+					<refKeys>id</refKeys>
+				</association>
+				<association name="refJob">
+					<keys>job</keys>
+					<refTableName>job</refTableName>
+					<refKeys>job</refKeys>
+				</association>
+				<collection name="questions">
+					<keys>id</keys>
+					<refTableName>question</refTableName>
+					<refKeys>teacher_id</refKeys>
+				</collection>
+			</properties>
+		</table>
+		
+		<table tableName="job">
+		</table>
+		
+		<table tableName="question">
+			<properties>
+				<association name="student" >
+					<keys>student_id</keys>
+					<refKeys>id</refKeys>
+					<refTableName>student_info</refTableName>
+				</association>
+				<collection name="selectionStudents">
+					<keys>id</keys>
+					<relTableName>student_question</relTableName>
+					<relKeys>question_id</relKeys>
+					<relRefKeys>student_id</relRefKeys>
+					<refTableName>student_info</refTableName>
+					<refKeys>id</refKeys>
+				</collection>
+				<condition name="startTime" column="choose_time" logic="bigger"></condition>
+				<condition name="endTime" column="choose_time" logic="smaller"></condition>
+			</properties>
+		</table>
+		
+		<table tableName="student_info" alias="Student" packetAlias="student">
+			<properties>
+				<association name="user">
+					<keys>user_id</keys>
+					<refTableName>user_info</refTableName>
+					<refKeys>id</refKeys>
+				</association>
+				
+				<collection name="questions">
+					<keys>id</keys>
+					<relKeys>student_id</relKeys>
+					<relTableName>student_question</relTableName>
+					<relRefKeys>question_id</relRefKeys>
+					<refTableName>question</refTableName>
+					<refKeys>id</refKeys>
+				</collection>
+			</properties>
+		</table>
+	
+		<table tableName="student_question" packetAlias="question">
+		
+		</table>
+		
+		<table tableName="choosing_time" packetAlias="question">
+		
+		</table>
+	
+<!-- 		<table tableName="student_info" alias="Student"  -->
+<!-- 			propertyNameRule="" -->
+<!-- 			columnPrefix="" columnSuffix="" targetPacket="" packetAlias = ""> -->
+<!-- 			<properties> -->
+<!-- 				Property 自定义“字段”和“属性”映射，可以自定义属性名，属性类型 column为必要属性-->
+<!-- 			<property name="enterpriseId" column="enterprise_id" javaType="Integer"></property> -->
+<!-- 				Association 定义复杂映射 “数据表”和“复杂类型对象”的映射  -->
+<!-- 			<association name="enterprise" javaType="com.micheal.enterprise.pojo.Enterprise" keys="enterprise_id" relKeys="" relTableName="" -->
+<!-- 			relRefKeys="" refKeys="id" refTableName="enterprise_info"></association> -->
+<!-- 				Collection 定义集合类型复杂映射 “数据表”和“集合<复杂类型>”的映射 -->
+<!-- 			<collection name="enterprise" javaType="com.micheal.enterprise.pojo.Enterprise" keys="enterprise_id" relKeys="" relTableName="" -->
+<!-- 			relRefKeys="" refKeys="id" refTableName="enterprise_info"></collection> -->
+<!-- 				<condition name="startTime" column ="school_id" logic="smaller"></condition> -->
+<!-- 				<association name="" javaType="" keys="school_id" refKeys="id" refTableName="school_info" /> -->
+<!-- 				<collection name="" javaType="" keys="id" refKeys="student_id" refTableName="mobile" /> -->
+<!-- 				<collection name="" javaType="" keys="id" relKeys="student_id" relTableName="student_teacher_rel"> -->
+<!-- 					<relRefKeys>teacher_id</relRefKeys> -->
+<!-- 					<refKeys>id</refKeys> -->
+<!-- 					<refTableName>teacher_info</refTableName> -->
+<!-- 				</collection> -->
+<!-- 			</properties> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="school_info" alias="School"></table> -->
+<!-- 		<table tableName="teacher_info" alias="Teacher"></table> -->
+<!-- 		<table tableName="mobile"></table> -->
+	</tables>
+	
+</freeHandsConfig>

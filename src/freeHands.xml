@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeHandsConfig targetProject="ERMS">
+	
+	<configurationFile location="/Configuration.xml"/>
+	
+	<settings>
+		<charset>utf-8</charset>
+		<timeout>20000</timeout>
+		<useGenerateKeys>false</useGenerateKeys>
+	</settings>
+	
+	<jdbcConnection
+		classPath="/Users/Micheal/Desktop/mysql-connector-java-5.1.8-bin.jar"
+		driver="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/ERMS"
+		user="root" password="525725">
+	</jdbcConnection>
+
+	<javaModelGenerator targetPacketPrefix="com.micheal" targetPacketSuffix="pojo">
+	</javaModelGenerator>
+	
+	<sqlMapGenerator targetPacketPrefix="com.micheal" targetPacketSuffix="sqlMap">
+	</sqlMapGenerator>
+	
+	<daoGenerator targetPacketPrefix="com.micheal" targetPacketSuffix="dao">
+	</daoGenerator>
+	
+	<tables schema="ERMS">
+		<table tableName="user_info" alias="User" 
+			propertyNameRule="camelCase"
+			columnPrefix="" columnSuffix="" targetPacket=“” packetAlias = "">
+			<properties>
+<!-- 				Property 自定义“字段”和“属性”映射，可以自定义属性名，属性类型 column为必要属性-->
+				<property name="enterpriseId" column="enterprise_id" javaType="Integer"></property>
+<!-- 				Association 定义复杂映射 “数据表”和“复杂类型对象”的映射  -->
+				<association name="enterprise" javaType="com.micheal.enterprise.pojo.Enterprise" keys="enterprise_id" relKeys="" relTableName=""
+					relRefKeys="" refKeys="id" refTableName="enterprise_info"></association>
+<!-- 				Collection 定义集合类型复杂映射 “数据表”和“集合<复杂类型>”的映射 -->
+				<collection name="enterprise" javaType="com.micheal.enterprise.pojo.Enterprise" keys="enterprise_id" relKeys="" relTableName=""
+					relRefKeys="" refKeys="id" refTableName="enterprise_info"></collection>
+			</properties>
+		</table>
+	</tables>
+	
+</freeHandsConfig>

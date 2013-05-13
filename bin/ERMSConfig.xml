@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeHandsConfig targetProject="ERMS">
+	
+	<configurationFile location="/Configuration.xml"/>
+	
+	<author>Micheal Chan 553806198@qq.com</author>
+	
+	<settings>
+		<charset>utf-8</charset>
+<!-- 		<timeout>20000</timeout> -->
+		<useGenerateKeys>true</useGenerateKeys>
+	</settings>
+	
+	<jdbcConnection
+		classPath="/Users/Micheal/Desktop/mysql-connector-java-5.1.8-bin.jar"
+		driver="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/ERMS?useUnicode=true&amp;characterEncoding=UTF-8"
+		user="root" password="525725">
+	</jdbcConnection>
+
+	<javaModelGenerator targetPacketPrefix="com.erms" targetPacketSuffix="pojo">
+	</javaModelGenerator>
+	
+	<sqlMapGenerator targetPacketPrefix="com.erms" targetPacketSuffix="mapper">
+	</sqlMapGenerator>
+	
+	<daoGenerator targetPacketPrefix="com.erms" targetPacketSuffix="dao">
+	</daoGenerator>
+	
+	<tables schema="ERMS" nameRule="">
+		
+<!-- 		<table tableName="user_info" alias="User" packetAlias="user"> -->
+<!-- 			<properties> -->
+<!-- 				<condition name="startTime" column="create_time" logic="bigger equals"></condition> -->
+<!-- 				<condition name="endTime" column="create_time" logic="smaller equals"></condition> -->
+<!-- 				<association name="enterprise"> -->
+<!-- 					<keys>enterprise_id</keys> -->
+<!-- 					<refTableName>enterprise_info</refTableName> -->
+<!-- 					<refKeys>id</refKeys> -->
+<!-- 				</association> -->
+<!-- 				<collection name="roles"> -->
+<!-- 					<keys>id</keys> -->
+<!-- 					<relTableName>user_role_rel</relTableName> -->
+<!-- 					<relKeys>user_id</relKeys> -->
+<!-- 					<relRefKeys>role_id</relRefKeys> -->
+<!-- 					<refTableName>role_info</refTableName> -->
+<!-- 					<refKeys>id</refKeys> -->
+<!-- 				</collection> -->
+<!-- 			</properties> -->
+<!-- 		</table> -->
+		
+<!-- 		<table tableName="enterprise_info" alias="Enterprise" packetAlias="user"> -->
+<!-- 			<properties> -->
+<!-- 				<condition name="startTime" column="create_time" logic="bigger equals"></condition> -->
+<!-- 				<condition name="endTime" column="create_time" logic="smaller equals"></condition> -->
+<!-- 				<collection name="roles"> -->
+<!-- 					<keys>id</keys> -->
+<!-- 					<refTableName>role_info</refTableName> -->
+<!-- 					<refKeys>enterprise_id</refKeys> -->
+<!-- 				</collection> -->
+<!-- 			</properties> -->
+<!-- 		</table> -->
+		
+<!-- 		<table tableName="user_role_rel" packetAlias="user"></table> -->
+		
+<!-- 		<table tableName="role_info" alias="Role" packetAlias="user"></table> -->
+	
+		<table tableName="menu_info" alias="Menu" packetAlias="menu">
+			<properties>
+				<collection name="subMenus">
+					<keys>id</keys>
+					<refTableName>menu_info</refTableName>
+					<refKeys>id</refKeys>
+			</collection>
+			</properties>
+		</table>
+	
+	
+	
+<!-- 		<table tableName="student_info" alias="Student"  -->
+<!-- 			propertyNameRule="" -->
+<!-- 			columnPrefix="" columnSuffix="" targetPacket="" packetAlias = ""> -->
+<!-- 			<properties> -->
+<!-- 				Property 自定义“字段”和“属性”映射，可以自定义属性名，属性类型 column为必要属性-->
+<!-- 			<property name="enterpriseId" column="enterprise_id" javaType="Integer"></property> -->
+<!-- 				Association 定义复杂映射 “数据表”和“复杂类型对象”的映射  -->
+<!-- 			<association name="enterprise" javaType="com.micheal.enterprise.pojo.Enterprise" keys="enterprise_id" relKeys="" relTableName="" -->
+<!-- 			relRefKeys="" refKeys="id" refTableName="enterprise_info"></association> -->
+<!-- 				Collection 定义集合类型复杂映射 “数据表”和“集合<复杂类型>”的映射 -->
+<!-- 			<collection name="enterprise" javaType="com.micheal.enterprise.pojo.Enterprise" keys="enterprise_id" relKeys="" relTableName="" -->
+<!-- 			relRefKeys="" refKeys="id" refTableName="enterprise_info"></collection> -->
+<!-- 				<condition name="startTime" column ="school_id" logic="smaller"></condition> -->
+<!-- 				<association name="" javaType="" keys="school_id" refKeys="id" refTableName="school_info" /> -->
+<!-- 				<collection name="" javaType="" keys="id" refKeys="student_id" refTableName="mobile" /> -->
+<!-- 				<collection name="" javaType="" keys="id" relKeys="student_id" relTableName="student_teacher_rel"> -->
+<!-- 					<relRefKeys>teacher_id</relRefKeys> -->
+<!-- 					<refKeys>id</refKeys> -->
+<!-- 					<refTableName>teacher_info</refTableName> -->
+<!-- 				</collection> -->
+<!-- 			</properties> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="school_info" alias="School"></table> -->
+<!-- 		<table tableName="teacher_info" alias="Teacher"></table> -->
+<!-- 		<table tableName="mobile"></table> -->
+	</tables>
+	
+</freeHandsConfig>

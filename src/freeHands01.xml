@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeHandsConfig targetProject="Test">
+	
+	<configurationFile location="/Configuration.xml"/>
+	
+	<jdbcConnection
+		classPath="D:\jar\ojdbc14_11g.jar"
+		driver="oracle.jdbc.driver.OracleDriver"
+		url="jdbc:oracle:thin:@128.160.1.39:1521:EBDB"
+		user="ebuser" password="ebuser">
+	</jdbcConnection>
+
+	<javaModelGenerator targetPacketPrefix="com.ebuser" targetPacketSuffix="pojo"/>
+	
+	<sqlMapGenerator targetPacketPrefix="com.ebuser" targetPacketSuffix="sqlMap"/>
+	
+	<daoGenerator targetPacketPrefix="com.ebuser" targetPacketSuffix="dao"/>
+	
+	<tables schema="EBUSER">
+		<table tableName="CB_FUND_TRAN" type="CB_FUND_TRAN"
+			propertyNameRule="camelCase">
+<!-- 			<properties> -->
+<!-- 				Property 自定义“字段”和“属性”映射，可以自定义属性名，属性类型 column为必要属性 -->
+<!-- 				<property name="enterpriseId2" column="enterprise_id" javaType="Integer"></property> -->
+<!-- 				Association 定义复杂映射 “数据表”和“复杂类型对象”的映射  -->
+<!-- 				<association></association> -->
+<!-- 				Collection 定义集合类型复杂映射 “数据表”和“集合<复杂类型>”的映射 -->
+<!-- 				<collection></collection> -->
+<!-- 			</properties> -->
+		</table>
+	</tables>
+	
+</freeHandsConfig>

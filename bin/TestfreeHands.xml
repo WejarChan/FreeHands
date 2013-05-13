@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<freeHandsConfig targetProject="TestFreeHands">
+	
+	<configurationFile location="/Configuration.xml"/>
+	
+	<author>Micheal Chan 553806198@qq.com</author>
+	
+	<settings>
+		<charset>utf-8</charset>
+		<timeout>20000</timeout>
+		<useGenerateKeys>true</useGenerateKeys>
+	</settings>
+	
+	<jdbcConnection
+		classPath="/Users/Micheal/Desktop/mysql-connector-java-5.1.8-bin.jar"
+		driver="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/Test?useUnicode=true&amp;characterEncoding=UTF-8"
+		user="root" password="525725">
+	</jdbcConnection>
+
+	<javaModelGenerator targetPacketPrefix="com.test" targetPacketSuffix="pojo">
+	</javaModelGenerator>
+	
+	<sqlMapGenerator targetPacketPrefix="com.test" targetPacketSuffix="sqlMap">
+	</sqlMapGenerator>
+	
+	<daoGenerator targetPacketPrefix="com.test" targetPacketSuffix="dao">
+	</daoGenerator>
+	
+	<tables schema="Test" nameRule="">
+		<table tableName="student_info" alias="Student" 
+			propertyNameRule=""
+			columnPrefix="" columnSuffix="" targetPacket="" packetAlias = "">
+			<properties>
+<!-- 				Property 自定义“字段”和“属性”映射，可以自定义属性名，属性类型 column为必要属性-->
+<!-- 			<property name="enterpriseId" column="enterprise_id" javaType="Integer"></property> -->
+<!-- 				Association 定义复杂映射 “数据表”和“复杂类型对象”的映射  -->
+<!-- 			<association name="enterprise" javaType="com.micheal.enterprise.pojo.Enterprise" keys="enterprise_id" relKeys="" relTableName="" -->
+<!-- 			relRefKeys="" refKeys="id" refTableName="enterprise_info"></association> -->
+<!-- 				Collection 定义集合类型复杂映射 “数据表”和“集合<复杂类型>”的映射 -->
+<!-- 			<collection name="enterprise" javaType="com.micheal.enterprise.pojo.Enterprise" keys="enterprise_id" relKeys="" relTableName="" -->
+<!-- 			relRefKeys="" refKeys="id" refTableName="enterprise_info"></collection> -->
+				<condition name="startTime" column ="school_id" logic="smaller"></condition>
+				<association name="" javaType="" keys="school_id" refKeys="id" refTableName="school_info" />
+				<collection name="" javaType="" keys="id" refKeys="student_id" refTableName="mobile" />
+				<collection name="" javaType="" keys="id" relKeys="student_id" relTableName="student_teacher_rel">
+					<relRefKeys>teacher_id</relRefKeys>
+					<refKeys>id</refKeys>
+					<refTableName>teacher_info</refTableName>
+				</collection>
+			</properties>
+		</table>
+		<table tableName="school_info" alias="School"></table>
+		<table tableName="teacher_info" alias="Teacher"></table>
+		<table tableName="mobile"></table>
+	</tables>
+	
+</freeHandsConfig>

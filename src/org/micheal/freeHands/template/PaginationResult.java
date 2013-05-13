@@ -1,0 +1,37 @@
+package org.micheal.freeHands.template;
+
+import java.util.List;
+
+/**
+ * 
+ * @ClassName: PaginationResult 
+ * @Description: 分页查询结果
+ * @author Micheal_Chan 553806198@qq.com 
+ * @date 2013-4-21 下午3:20:05 
+ * 
+ * @param <T>
+ */
+public class PaginationResult<T> {
+	
+	//分页信息
+	private PaginationInfo paginationInfo;
+	//查询结果记录集合
+	private List<T> data;
+
+	public PaginationInfo getPaginationInfo() {
+		return paginationInfo;
+	}
+
+	public void setPaginationInfo(PaginationInfo paginationInfo) {
+		this.paginationInfo = paginationInfo;
+	}
+
+	public List<T> getData() {
+		return data;
+	}
+
+	public void setData(List<T> data) {
+		this.data = data;
+	}
+	
+}
